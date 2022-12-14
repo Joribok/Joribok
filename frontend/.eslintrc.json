@@ -4,10 +4,5 @@
     "es2022": true,
     "node": true
   },
-  "extends": [
-    "eslint:recommended",
-    "next",
-    "next/core-web-vitals",
-    "plugin:storybook/recommended"
-  ]
+  "extends": ["eslint:recommended", "next", "next/core-web-vitals"]
 }
