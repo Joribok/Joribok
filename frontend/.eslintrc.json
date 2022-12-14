@@ -4,5 +4,13 @@
     "es2022": true,
     "node": true
   },
-  "extends": ["eslint:recommended", "next", "next/core-web-vitals"]
+  "extends": ["eslint:recommended", "next", "next/core-web-vitals"],
+  "rules": {
+    "react/function-component-definition": [
+      "error",
+      {
+        "namedComponents": "arrow-function"
+      }
+    ]
+  }
 }
