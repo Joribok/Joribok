@@ -1,8 +1,10 @@
-import { ThemeProvider } from '@emotion/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Provider } from 'jotai';
+import { ThemeProvider } from '@emotion/react';
 
 import { initialize, mswDecorator } from 'msw-storybook-addon';
 
+import GlobalStyle from '@/styles/global';
 import theme from '@/styles/theme';
 
 export const parameters = {
@@ -17,7 +19,7 @@ export const parameters = {
 
 const queryClient = new QueryClient();
 
-export const decorator = [
+export const decorators = [
   mswDecorator,
   Story => (
     <ThemeProvider theme={theme}>
