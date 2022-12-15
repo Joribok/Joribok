@@ -1,3 +1,4 @@
+import { ThemeProvider } from '@emotion/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import { initialize, mswDecorator } from 'msw-storybook-addon';
