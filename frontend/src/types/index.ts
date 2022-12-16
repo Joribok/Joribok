@@ -6,5 +6,6 @@ export type Size = UnionizeValues<typeof SIZE>;
 declare module '@emotion/react' {
   export interface Theme {
     colors: Record<UnionizeKeys<typeof theme.colors>, string>;
+    zIndex: Record<UnionizeKeys<typeof theme.zIndex>, number>;
   }
 }
