@@ -10,6 +10,10 @@ const globalStyle = css`
   :root {
     font-size: 3.2vw;
   }
+
+  * {
+    font-family: 'IBMPlexSansKR-Regular';
+  }
 `;
 
 const GlobalStyle = () => {
