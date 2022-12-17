@@ -1,4 +1,3 @@
-import { ThemeProvider } from '@emotion/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Provider } from 'jotai';
 import { ThemeProvider } from '@emotion/react';
