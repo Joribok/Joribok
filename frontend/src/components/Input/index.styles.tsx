@@ -2,11 +2,10 @@ import styled from '@emotion/styled';
 
 const Input = styled.input<{ isValid: boolean }>`
   ${({ isValid, theme }) => `
-    background: ${isValid ? theme.colors.WHITE_100 : theme.colors.RED_200};
+    background: ${isValid ? theme.colors.WHITE_100 : theme.colors.RED_100};
     color: ${theme.colors.BLACK_500};
 
-    border-color: ${theme.colors.YELLOW_500};
-    border-style: solid;
+    border: solid ${theme.colors.YELLOW_500};
   `}
 
   border-radius: 4px;
