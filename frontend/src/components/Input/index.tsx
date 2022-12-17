@@ -18,14 +18,11 @@ const Input = ({
   ...inputAttribute
 }: InputProps &
   React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>) => {
-  switch (hasUnderline) {
-    case false:
-      return <S.Input type={type} isValid={isValid} {...inputAttribute} />;
-    case true:
-      return <S.UnderlineInput type={type} isValid={isValid} {...inputAttribute} />;
-    default:
-      return <S.Input type={type} isValid={isValid} {...inputAttribute} />;
+  if (hasUnderline) {
+    return <S.UnderlineInput type={type} isValid={isValid} {...inputAttribute} />;
   }
+
+  return <S.Input type={type} isValid={isValid} {...inputAttribute} />;
 };
 
 export default Input;
