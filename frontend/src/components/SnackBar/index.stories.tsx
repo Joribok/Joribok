@@ -22,13 +22,16 @@ const MockSnackBar = () => {
       isActive: true,
       message: '스토리북 테스트 문구입니다 두 줄 이상일 때에는 이렇게 표시됩니다 ',
     });
-    setTimeout(() => {
+    let timer = setTimeout(() => {
       setSnackBarState({
         isActive: false,
         message: '',
       });
     }, 1000);
-  }, []);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [setSnackBarState]);
 
   return <SnackBar />;
 };

@@ -10,5 +10,5 @@
   visibility: hidden;
   opacity: 0;
   transform: translate3d(0, 0, 0);
-  transition: visibility 200ms ease-in-out, opacity 200ms ease-in-out, transform 200ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
