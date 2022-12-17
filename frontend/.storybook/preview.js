@@ -1,10 +1,11 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Provider } from 'jotai';
+import { ThemeProvider } from '@emotion/react';
+
 import { initialize, mswDecorator } from 'msw-storybook-addon';
 
-import theme from '@/styles/theme';
-import { ThemeProvider } from '@emotion/react';
 import GlobalStyle from '@/styles/global';
+import theme from '@/styles/theme';
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
