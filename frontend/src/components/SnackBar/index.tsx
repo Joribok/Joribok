@@ -18,10 +18,12 @@ const SnackBar = () => {
 
   return (
     <CreatePortal modalId="snack-bar">
-      <S.Container>
-        <h2 hidden>snackBar가 표시되는 영역입니다</h2>
-        <S.MessageBox className={snackBarClassName}>{snackBarState.message}</S.MessageBox>
-      </S.Container>
+      {snackBarState.isActive && (
+        <S.Container>
+          <h2 hidden>snackBar가 표시되는 영역입니다</h2>
+          <S.MessageBox className={snackBarClassName}>{snackBarState.message}</S.MessageBox>
+        </S.Container>
+      )}
     </CreatePortal>
   );
 };
