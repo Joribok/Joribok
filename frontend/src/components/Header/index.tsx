@@ -1,24 +1,39 @@
+import { useState } from 'react';
+
 import useHeader from '@/hooks/useHeader';
 
 import * as S from './index.styles';
+import Slider from './Slider';
 
 const Header = () => {
   const { visible } = useHeader();
+  const [isSliderOpen, setIsSliderOpen] = useState(false);
+
+  const showSlider = () => {
+    setIsSliderOpen(true);
+  };
+
+  const hideSlider = () => {
+    setIsSliderOpen(false);
+  };
 
   return (
     <>
       {visible && (
-        <S.Container>
-          <S.Wrapper href="/">
-            <S.Logo />
-            JORIBOK
-          </S.Wrapper>
-          <S.HamburgerButton>
-            <span />
-            <span />
-            <span />
-          </S.HamburgerButton>
-        </S.Container>
+        <>
+          <S.Container>
+            <S.Wrapper href="/">
+              <S.Logo />
+              JORIBOK
+            </S.Wrapper>
+            <S.HamburgerButton onClick={showSlider}>
+              <span />
+              <span />
+              <span />
+            </S.HamburgerButton>
+          </S.Container>
+          {isSliderOpen && <Slider hideSlider={hideSlider} />}
+        </>
       )}
     </>
   );
