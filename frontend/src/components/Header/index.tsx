@@ -1,32 +1,9 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
-
-import useThrottle from '@/hooks/useThrottle';
+import useHeader from '@/hooks/useHeader';
 
 import * as S from './index.styles';
 
 const Header = () => {
-  const [visible, setVisible] = useState(true);
-  const beforeScrollY = useRef(0);
-
-  const throttledScrollFunc = useThrottle(() => {
-    const currentScrollY = window.scrollY;
-    const newVisible = beforeScrollY.current >= currentScrollY || currentScrollY <= 10;
-
-    beforeScrollY.current = currentScrollY;
-
-    setVisible(newVisible);
-  }, 50);
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const handleScroll = useMemo(() => throttledScrollFunc, [beforeScrollY]);
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [handleScroll]);
+  const { visible } = useHeader();
 
   return (
     <>
