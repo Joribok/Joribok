@@ -19,22 +19,18 @@ const Header = () => {
 
   return (
     <>
-      {visible && (
-        <>
-          <S.Container>
-            <S.Wrapper href="/">
-              <S.Logo />
-              JORIBOK
-            </S.Wrapper>
-            <S.HamburgerButton onClick={showSlider}>
-              <span />
-              <span />
-              <span />
-            </S.HamburgerButton>
-          </S.Container>
-          {isSliderOpen && <Slider hideSlider={hideSlider} />}
-        </>
-      )}
+      <S.Container className={visible ? 'show' : 'hide'}>
+        <S.Wrapper href="/">
+          <S.Logo />
+          JORIBOK
+        </S.Wrapper>
+        <S.HamburgerButton onClick={showSlider}>
+          <span />
+          <span />
+          <span />
+        </S.HamburgerButton>
+      </S.Container>
+      {isSliderOpen && <Slider hideSlider={hideSlider} />}
     </>
   );
 };

@@ -1,15 +1,4 @@
-import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
-
-const showingAnimation = keyframes`
-  from {
-    transform: translate3d(0, -3rem, 0);
-  }
-
-  to {
-    transform: translate3d(0, 0, 0);
-  }
-`;
 
 const Container = styled.div`
   display: flex;
@@ -26,7 +15,15 @@ const Container = styled.div`
 
   padding: 0 0.5rem;
 
-  animation: ${showingAnimation} 0.1s;
+  transition: transform 0.1s;
+
+  &.show {
+    transform: translate3d(0, 0, 0);
+  }
+
+  &.hide {
+    transform: translate3d(0, -3rem, 0);
+  }
 `;
 
 const Wrapper = styled.a`
