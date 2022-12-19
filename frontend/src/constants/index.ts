@@ -9,10 +9,16 @@ const BUTTON_TYPE = {
   BUTTON: 'button',
 } as const;
 
+const INPUT_TYPE = {
+  TEXT: 'text',
+  NUMBER: 'number',
+  PASSWORD: 'password',
+} as const;
+
 const ALIGN = {
   LEFT: 'left',
   CENTER: 'center',
   RIGHT: 'right',
 } as const;
 
-export { SIZE, BUTTON_TYPE, ALIGN };
+export { SIZE, BUTTON_TYPE, INPUT_TYPE, ALIGN };
