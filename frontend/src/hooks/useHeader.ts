@@ -8,7 +8,7 @@ const useHeader = () => {
 
   const throttledScrollFunc = useThrottle(() => {
     const currentScrollY = window.scrollY;
-    const newVisible = beforeScrollY.current >= currentScrollY || currentScrollY <= 10;
+    const newVisible = beforeScrollY.current >= currentScrollY || currentScrollY <= 35;
 
     beforeScrollY.current = currentScrollY;
 
