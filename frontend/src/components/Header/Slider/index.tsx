@@ -6,7 +6,7 @@ import * as S from './index.styles';
 
 const animationTime = 200;
 
-interface SliderProps {
+export interface SliderProps {
   hideSlider: () => void;
 }
 
