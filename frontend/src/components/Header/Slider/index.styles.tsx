@@ -86,7 +86,7 @@ const UserWrapper = styled.div`
   gap: 1.5rem;
 
   span {
-    color: ${({ theme: { colors } }) => colors.GREEN_500};
+    color: ${({ theme: { colors } }) => colors.BLUE_400};
 
     font-weight: 700;
   }
