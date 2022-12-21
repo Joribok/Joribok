@@ -10,5 +10,6 @@ export type Align = UnionizeValues<typeof ALIGN>;
 declare module '@emotion/react' {
   export interface Theme {
     colors: Record<UnionizeKeys<typeof theme.colors>, string>;
+    zIndex: Record<UnionizeKeys<typeof theme.zIndex>, number>;
   }
 }
