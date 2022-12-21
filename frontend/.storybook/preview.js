@@ -18,6 +18,7 @@ export const parameters = {
   },
 };
 
+initialize();
 const queryClient = new QueryClient();
 
 export const decorators = [
