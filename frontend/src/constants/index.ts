@@ -21,4 +21,11 @@ const ALIGN = {
   RIGHT: 'right',
 } as const;
 
-export { SIZE, BUTTON_TYPE, INPUT_TYPE, ALIGN };
+const REGEX = {
+  // eslint-disable-next-line no-useless-escape
+  ID: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{2,19}$/,
+  // eslint-disable-next-line no-useless-escape
+  PASSWORD: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,19}$/,
+};
+
+export { SIZE, BUTTON_TYPE, INPUT_TYPE, ALIGN, REGEX };
