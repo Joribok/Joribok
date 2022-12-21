@@ -5,6 +5,7 @@ import { ThemeProvider } from '@emotion/react';
 
 import GlobalStyle from '@/styles/global';
 import theme from '@/styles/theme';
+import('../mocks');
 
 export const queryClient = new QueryClient();
 

@@ -1,0 +1,59 @@
+{
+  "articles": [
+    {
+      "id": 1,
+      "nickname": "샐리",
+      "plans": "취업하기"
+    },
+    {
+      "id": 2,
+      "nickname": "샐리",
+      "plans": "취업하기"
+    },
+    {
+      "id": 3,
+      "nickname": "샐리",
+      "plans": "취업하기"
+    },
+    {
+      "id": 4,
+      "nickname": "샐리",
+      "plans": "취업하기"
+    },
+    {
+      "id": 5,
+      "nickname": "샐리",
+      "plans": "취업하기"
+    },
+    {
+      "id": 6,
+      "nickname": "샐리",
+      "plans": "취업하기"
+    },
+    {
+      "id": 7,
+      "nickname": "샐리",
+      "plans": "취업하기"
+    },
+    {
+      "id": 8,
+      "nickname": "샐리",
+      "plans": "취업하기"
+    },
+    {
+      "id": 9,
+      "nickname": "샐리",
+      "plans": "취업하기"
+    },
+    {
+      "id": 10,
+      "nickname": "샐리",
+      "plans": "취업하기"
+    },
+    {
+      "id": 11,
+      "nickname": "샐리",
+      "plans": "취업하기"
+    }
+  ]
+}
