@@ -51,4 +51,13 @@ export const ArticleHandler = [
       }),
     );
   }),
+  rest.get(`${HOME_URL}/article/total-count`, (req, res, ctx) => {
+    const articlesCount = mockArticle.articles.length;
+    return res(
+      ctx.status(200),
+      ctx.json({
+        count: articlesCount,
+      }),
+    );
+  }),
 ];
