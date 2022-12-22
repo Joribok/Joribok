@@ -5,5 +5,9 @@ const loginStateAtom = atom({
   id: '',
   nickname: '',
 });
+const snackBarStateAtom = atom({
+  isActive: false,
+  message: '',
+});
 
-export { loginStateAtom };
+export { loginStateAtom, snackBarStateAtom };
