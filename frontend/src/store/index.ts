@@ -1,6 +1,6 @@
 import { atom } from 'jotai';
 
-const loginStateAtom = atom({
+const userStateAtom = atom({
   isLogin: false,
   id: '',
   nickname: '',
@@ -10,4 +10,4 @@ const snackBarStateAtom = atom({
   message: '',
 });
 
-export { loginStateAtom, snackBarStateAtom };
+export { userStateAtom, snackBarStateAtom };

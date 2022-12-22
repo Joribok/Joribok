@@ -2,7 +2,7 @@ import { useEffect, MouseEvent } from 'react';
 import { useAtomValue } from 'jotai';
 
 import useClosingState from '@/hooks/useClosingState';
-import { loginStateAtom } from '@/store';
+import { userStateAtom } from '@/store';
 
 import Login from './Login';
 import NotLogin from './NotLogin';
@@ -16,8 +16,8 @@ export interface SliderProps {
 }
 
 const Slider = ({ hideSlider }: SliderProps) => {
-  const { isLogin } = useAtomValue(loginStateAtom);
-  const { isClosing, close } = useClosingState(animationTime, hideSlider);
+  const { isLogin } = useAtomValue(userStateAtom);
+  const { isClosing, close: closeSlider } = useClosingState(animationTime, hideSlider);
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -32,7 +32,7 @@ const Slider = ({ hideSlider }: SliderProps) => {
   };
 
   return (
-    <S.Dimmer onClick={close}>
+    <S.Dimmer onClick={closeSlider}>
       <S.Content
         className={isClosing ? 'close' : ''}
         animationTime={animationTime}
