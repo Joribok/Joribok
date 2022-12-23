@@ -26,7 +26,7 @@ const Dimmer = styled.div`
   justify-content: flex-end;
 
   position: fixed;
-  z-index: 999;
+  z-index: ${({ theme: { zIndex } }) => zIndex.SLIDER};
   right: 0;
 
   width: 100%;
@@ -84,6 +84,11 @@ const UserWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
+
+  img {
+    width: 4rem;
+    aspect-ratio: 1 / 1;
+  }
 
   span {
     color: ${({ theme: { colors } }) => colors.BLUE_400};

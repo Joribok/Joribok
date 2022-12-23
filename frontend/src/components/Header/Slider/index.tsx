@@ -38,7 +38,7 @@ const Slider = ({ hideSlider }: SliderProps) => {
         animationTime={animationTime}
         onClick={preventBubbling}
       >
-        <S.CloseButton onClick={close} />
+        <S.CloseButton onClick={closeSlider} />
         {isLogin ? <Login /> : <Logoff />}
       </S.Content>
     </S.Dimmer>

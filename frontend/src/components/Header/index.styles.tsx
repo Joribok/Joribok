@@ -6,7 +6,7 @@ const Container = styled.div`
   align-items: center;
 
   position: fixed;
-  z-index: 998;
+  z-index: ${({ theme: { zIndex } }) => zIndex.HEADER};
 
   width: 97%;
   height: 3rem;
