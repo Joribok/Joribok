@@ -5,7 +5,7 @@ import useClosingState from '@/hooks/useClosingState';
 import { userStateAtom } from '@/store';
 
 import Login from './Login';
-import NotLogin from './NotLogin';
+import Logoff from './Logoff';
 
 import * as S from './index.styles';
 
@@ -39,7 +39,7 @@ const Slider = ({ hideSlider }: SliderProps) => {
         onClick={preventBubbling}
       >
         <S.CloseButton onClick={close} />
-        {isLogin ? <Login /> : <NotLogin />}
+        {isLogin ? <Login /> : <Logoff />}
       </S.Content>
     </S.Dimmer>
   );
