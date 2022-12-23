@@ -7,7 +7,7 @@ import * as S from './index.styles';
 
 const animationDelay = 5;
 
-interface LuckyBoxProps {
+export interface LuckyBoxProps {
   fortune: string;
   thing: string;
   color: string;

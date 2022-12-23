@@ -3,7 +3,7 @@ import { ALIGN } from '@/constants';
 
 import * as S from './index.styles';
 
-interface CommentBoxProps {
+export interface CommentBoxProps {
   color: string;
   children: string;
 }
