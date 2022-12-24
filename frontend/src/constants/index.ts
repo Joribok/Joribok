@@ -22,9 +22,7 @@ const ALIGN = {
 } as const;
 
 const REGEX = {
-  // eslint-disable-next-line no-useless-escape
   ID: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{2,19}$/,
-  // eslint-disable-next-line no-useless-escape
   PASSWORD: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,19}$/,
 };
 

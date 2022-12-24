@@ -3,10 +3,10 @@ import Link from 'next/link';
 import Button from '@/components/Button';
 import Input from '@/components/Input';
 import useInput from '@/hooks/useInput';
+import useSnackBar from '@/hooks/useSnackBar';
 import { REGEX } from '@/constants';
 
 import * as S from './index.styles';
-import useSnackBar from '@/hooks/useSnackBar';
 
 const Login = () => {
   const [id, changeId] = useInput('');
@@ -21,7 +21,6 @@ const Login = () => {
   const attemptLogin = () => {
     if (!isValidate) {
       showSnackBar('아이디와 비밀번호를 다시 확인해주세요.');
-      console.log('?');
       return;
     }
   };
