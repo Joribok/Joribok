@@ -5,6 +5,7 @@ import { ThemeProvider } from '@emotion/react';
 
 import GlobalStyle from '@/styles/global';
 import theme from '@/styles/theme';
+import Layout from '@/components/Layout';
 import SnackBar from '@/components/SnackBar';
 
 export const queryClient = new QueryClient();
@@ -15,7 +16,9 @@ const App = ({ Component, pageProps }: AppProps) => {
       <GlobalStyle />
       <Provider>
         <QueryClientProvider client={queryClient}>
-          <Component {...pageProps} />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
           <SnackBar />
         </QueryClientProvider>
       </Provider>

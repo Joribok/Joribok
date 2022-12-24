@@ -25,6 +25,8 @@ const colors = {
 
 const zIndex = {
   SNACK_BAR: 10,
+  HEADER: 998,
+  SLIDER: 999,
 };
 
 const theme = {
