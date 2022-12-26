@@ -21,4 +21,9 @@ const ALIGN = {
   RIGHT: 'right',
 } as const;
 
-export { SIZE, BUTTON_TYPE, INPUT_TYPE, ALIGN };
+const REGEX = {
+  ID: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{2,19}$/,
+  PASSWORD: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,19}$/,
+};
+
+export { SIZE, BUTTON_TYPE, INPUT_TYPE, ALIGN, REGEX };
