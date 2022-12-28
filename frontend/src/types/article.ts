@@ -14,4 +14,5 @@ export interface AllArticleResponseType {
   articles: TotalArticle[];
   pageNumber: number;
   hasNext: boolean;
+  totalCount: number;
 }
