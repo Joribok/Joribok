@@ -13,6 +13,8 @@ const ALIGN = {
   LEFT: 'left',
   CENTER: 'center',
   RIGHT: 'right',
+  ROW: 'row',
+  ROW_REVERSE: 'row-reverse',
 } as const;
 
 export { SIZE, BUTTON_TYPE, ALIGN };

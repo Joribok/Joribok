@@ -1,5 +1,9 @@
 import styled from '@emotion/styled';
 import { keyframes } from '@emotion/react';
+import { ALIGN } from '@/constants';
+import type { UnionizeValues } from '@/types/utils';
+
+type AlignDirection = UnionizeValues<Pick<typeof ALIGN, 'LEFT' | 'RIGHT'>>;
 
 const bounce = keyframes`
   from, 20%, 53%, 80%, to {
@@ -19,18 +23,13 @@ const bounce = keyframes`
   }
 `;
 
-export const Container = styled.li<{ direction: 'left' | 'right' }>`
+export const Container = styled.li<{ direction: AlignDirection }>`
   display: flex;
   list-style: none;
 
   align-items: center;
   gap: 1.25rem;
-  flex-direction: ${({ direction }) => {
-    if (direction === 'left') {
-      return 'row';
-    }
-    return 'row-reverse';
-  }};
+  flex-direction: ${({ direction }) => (direction === ALIGN.LEFT ? ALIGN.ROW : ALIGN.ROW_REVERSE)};
 `;
 
 export const UserName = styled.div<{ randomColor: string }>`
