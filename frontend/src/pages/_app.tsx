@@ -6,7 +6,11 @@ import { Provider } from 'jotai';
 import { ThemeProvider } from '@emotion/react';
 import GlobalStyle from '@/styles/global';
 import theme from '@/styles/theme';
+
 import('../mocks');
+
+import Layout from '@/components/Layout';
+import SnackBar from '@/components/SnackBar';
 
 const App = ({ Component, pageProps }: AppProps) => {
   const [queryClient] = React.useState(() => new QueryClient());
@@ -17,8 +21,11 @@ const App = ({ Component, pageProps }: AppProps) => {
       <Provider>
         <QueryClientProvider client={queryClient}>
           <Hydrate state={pageProps.dehydratedState}>
-            <Component {...pageProps} />
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
           </Hydrate>
+          <SnackBar />
         </QueryClientProvider>
       </Provider>
     </ThemeProvider>

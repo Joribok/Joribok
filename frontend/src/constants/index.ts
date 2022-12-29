@@ -9,6 +9,12 @@ const BUTTON_TYPE = {
   BUTTON: 'button',
 } as const;
 
+const INPUT_TYPE = {
+  TEXT: 'text',
+  NUMBER: 'number',
+  PASSWORD: 'password',
+} as const;
+
 const ALIGN = {
   LEFT: 'left',
   CENTER: 'center',
@@ -17,4 +23,9 @@ const ALIGN = {
   ROW_REVERSE: 'row-reverse',
 } as const;
 
-export { SIZE, BUTTON_TYPE, ALIGN };
+const REGEX = {
+  ID: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{2,19}$/,
+  PASSWORD: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,19}$/,
+};
+
+export { SIZE, BUTTON_TYPE, INPUT_TYPE, ALIGN, REGEX };

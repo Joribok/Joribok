@@ -23,8 +23,15 @@ const colors = {
   WHITE_100: '#FFFFFF',
 };
 
+const zIndex = {
+  SNACK_BAR: 10,
+  HEADER: 998,
+  SLIDER: 999,
+};
+
 const theme = {
   colors,
+  zIndex,
 } as const;
 
 export default theme;
