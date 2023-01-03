@@ -1,6 +1,8 @@
 import { css, Global } from '@emotion/react';
 import emotionReset from 'emotion-reset';
 
+import theme from '@/styles/theme';
+
 import fontStyle from './font';
 
 const globalStyle = css`
@@ -13,6 +15,11 @@ const globalStyle = css`
 
   * {
     font-family: 'IBMPlexSansKR-Regular';
+  }
+
+  a {
+    color: ${theme.colors.BLUE_500};
+    text-decoration: none;
   }
 `;
 

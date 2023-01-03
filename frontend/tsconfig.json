@@ -21,6 +21,7 @@
       "pages/*": ["src/pages/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.css"],
+
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.css", "**/*.json"],
   "exclude": ["node_modules"]
 }

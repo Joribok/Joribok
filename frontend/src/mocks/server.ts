@@ -1,5 +1,8 @@
 import { setupServer } from 'msw/node';
 
+import { ArticleHandler } from './handlers/article';
 import { luckyHandlers } from './handlers/lucky';
 
-export const server = setupServer(...luckyHandlers);
+const server = setupServer(...ArticleHandler, ...luckyHandlers);
+
+export { server };
