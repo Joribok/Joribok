@@ -28,4 +28,8 @@ const REGEX = {
   PASSWORD: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,19}$/,
 };
 
-export { SIZE, BUTTON_TYPE, INPUT_TYPE, ALIGN, REGEX };
+const ANIMATION_DELAY = {
+  LUCKY_BOX: 5,
+} as const;
+
+export { SIZE, BUTTON_TYPE, INPUT_TYPE, ALIGN, REGEX, ANIMATION_DELAY };

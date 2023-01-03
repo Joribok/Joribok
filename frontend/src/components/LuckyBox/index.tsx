@@ -1,11 +1,10 @@
 import { useTheme } from '@emotion/react';
 
 import CommentBox from './CommentBox';
+import { ANIMATION_DELAY } from '@/constants';
 import { useTyping } from '@/hooks/useTyping';
 
 import * as S from './index.styles';
-
-const animationDelay = 5;
 
 export interface LuckyBoxProps {
   fortune: string;
@@ -15,8 +14,11 @@ export interface LuckyBoxProps {
 
 const LuckyBox = ({ fortune, thing, color }: LuckyBoxProps) => {
   const splitedFortune = useTyping(fortune);
-  const splitedThing = useTyping(thing, fortune.length + animationDelay);
-  const splitedColor = useTyping(color, fortune.length + thing.length + animationDelay * 2);
+  const splitedThing = useTyping(thing, fortune.length + ANIMATION_DELAY.LUCKY_BOX);
+  const splitedColor = useTyping(
+    color,
+    fortune.length + thing.length + ANIMATION_DELAY.LUCKY_BOX * 2,
+  );
 
   const { colors } = useTheme();
 

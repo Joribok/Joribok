@@ -5,8 +5,7 @@ import { getLuckyDraw } from '@/api/lucky';
 
 import * as S from './index.styles';
 
-const lucky = () => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+const Lucky = () => {
   const { data } = useQuery(['lucky'], getLuckyDraw);
 
   if (!data) return <>loading...</>;
@@ -19,4 +18,4 @@ const lucky = () => {
   );
 };
 
-export default lucky;
+export default Lucky;

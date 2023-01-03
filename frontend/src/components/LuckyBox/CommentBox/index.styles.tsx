@@ -8,7 +8,6 @@ const blinkAnimation = keyframes`
 `;
 
 const Comment = styled.div`
-  max-width: 100%;
   min-height: 1.1rem;
   line-height: 1.2rem;
 
