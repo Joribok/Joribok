@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useMutation } from '@tanstack/react-query';
-import { requestSignup } from '@/api/auth';
 
 import Button from '@/components/Button';
 import Input from '@/components/Input';
@@ -9,7 +7,7 @@ import useSnackBar from '@/hooks/useSnackBar';
 import { REGEX } from '@/constants';
 
 import * as S from './index.styles';
-import { useRouter } from 'next/router';
+import useSignup from '@/hooks/useSignup';
 
 const Signup = () => {
   const [id, changeId] = useInput('');
@@ -22,7 +20,7 @@ const Signup = () => {
   const [isValidateNickname, setIsValidateNickname] = useState(false);
   const [isValidateConfirmPassword, setIsValidateConfirmPassword] = useState(false);
   const { showSnackBar } = useSnackBar();
-  const router = useRouter();
+  const mutateSignup = useSignup();
 
   useEffect(() => {
     setIsValidateId(REGEX.ID.test(id));
@@ -38,24 +36,6 @@ const Signup = () => {
       REGEX.PASSWORD.test(confirmPassword) && password === confirmPassword,
     );
   }, [password, confirmPassword]);
-
-  useEffect(() => {
-    isValidateId;
-  });
-
-  const mutateSignup = useMutation(['signup'], requestSignup, {
-    onSuccess: () => {
-      showSnackBar(`회원가입에 성공했습니다. 가입한 계정으로 로그인해주세요.`);
-      router.push('/login');
-    },
-    onError: ({
-      response: {
-        data: { message },
-      },
-    }) => {
-      showSnackBar(`${message}`);
-    },
-  });
 
   const attemptSignup = () => {
     if (!isValidateId) {
@@ -80,8 +60,6 @@ const Signup = () => {
 
     mutateSignup.mutate({ id, password, nickname });
   };
-
-  // const { isLogin } = useAtomValue(userStateAtom);
 
   return (
     <S.Container>
