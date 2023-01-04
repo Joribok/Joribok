@@ -48,7 +48,7 @@ const Login = () => {
         로그인
       </Button>
       <span>
-        아직 가입하지 않으셨다면, <Link href={'/login#'}>회원가입</Link> 하러 갈까요?
+        아직 가입하지 않으셨다면, <Link href={'/signup'}>회원가입</Link> 하러 갈까요?
       </span>
     </S.Container>
   );
