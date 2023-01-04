@@ -3,3 +3,8 @@ export type UserData = {
   password: string;
   nickname: string;
 };
+
+export type UserLoginData = {
+  id: UserData['id'];
+  password: UserData['password'];
+};
