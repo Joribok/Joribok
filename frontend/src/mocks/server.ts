@@ -1,5 +1,5 @@
 import { setupServer } from 'msw/node';
 import { ArticleHandler } from './article';
-import { SignupHandler } from './auth';
+import { AuthHandler } from './auth';
 
-export const server = setupServer(...ArticleHandler, ...SignupHandler);
+export const server = setupServer(...ArticleHandler, ...AuthHandler);
