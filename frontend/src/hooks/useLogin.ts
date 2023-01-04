@@ -1,0 +1,32 @@
+import { useMutation } from '@tanstack/react-query';
+import { requestLogin } from '@/api/auth';
+
+import { useRouter } from 'next/router';
+import { useSetAtom } from 'jotai';
+import { userStateAtom } from '@/store';
+import useSnackBar from './useSnackBar';
+
+const useLogin = () => {
+  const router = useRouter();
+  const setUserState = useSetAtom(userStateAtom);
+  const { showSnackBar } = useSnackBar();
+
+  const mutateLogin = useMutation(['login'], requestLogin, {
+    onSuccess: ({ id, nickname }) => {
+      setUserState({ isLogin: true, id, nickname });
+      showSnackBar(`${nickname}님 환영합니다.`);
+      router.push('/');
+    },
+    onError: ({
+      response: {
+        data: { message },
+      },
+    }) => {
+      showSnackBar(`${message}`);
+    },
+  });
+
+  return mutateLogin;
+};
+
+export default useLogin;

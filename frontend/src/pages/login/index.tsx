@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
+
 import Link from 'next/link';
 import Button from '@/components/Button';
 import Input from '@/components/Input';
 import useInput from '@/hooks/useInput';
 import useSnackBar from '@/hooks/useSnackBar';
+import useLogin from '@/hooks/useLogin';
 import { REGEX } from '@/constants';
 
 import * as S from './index.styles';
@@ -13,6 +15,7 @@ const Login = () => {
   const [password, changePassword] = useInput('');
   const [isValidate, setIsValidate] = useState(false);
   const { showSnackBar } = useSnackBar();
+  const mutateLogin = useLogin();
 
   useEffect(() => {
     setIsValidate(REGEX.ID.test(id) && REGEX.PASSWORD.test(password));
@@ -23,6 +26,8 @@ const Login = () => {
       showSnackBar('아이디와 비밀번호를 다시 확인해주세요.');
       return;
     }
+
+    mutateLogin.mutate({ id, password });
   };
 
   return (
