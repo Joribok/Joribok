@@ -7,6 +7,12 @@ export type ButtonType = UnionizeValues<typeof BUTTON_TYPE>;
 export type InputType = UnionizeValues<typeof INPUT_TYPE>;
 export type Align = UnionizeValues<typeof ALIGN>;
 
+export interface Lucky {
+  fortune: string;
+  thing: string;
+  color: string;
+}
+
 declare module '@emotion/react' {
   export interface Theme {
     colors: Record<UnionizeKeys<typeof theme.colors>, string>;

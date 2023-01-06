@@ -1,7 +1,7 @@
 import { TotalArticle } from '@/types/article';
 import { rest } from 'msw';
 
-import mockArticle from './data/totalArticle.json';
+import mockArticle from '../data/totalArticle.json';
 const HOME_URL = 'https://localhost:3000/api';
 
 export const ArticleHandler = [
