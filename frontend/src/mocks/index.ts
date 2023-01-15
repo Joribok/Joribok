@@ -7,4 +7,5 @@ if (typeof window === 'undefined') {
     worker.start();
   });
 }
+
 export {};

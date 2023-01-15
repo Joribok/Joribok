@@ -7,10 +7,12 @@ import { ThemeProvider } from '@emotion/react';
 import GlobalStyle from '@/styles/global';
 import theme from '@/styles/theme';
 
-import('../mocks');
-
 import Layout from '@/components/Layout';
 import SnackBar from '@/components/SnackBar';
+
+import '../mocks';
+
+export const queryClient = new QueryClient();
 
 const App = ({ Component, pageProps }: AppProps) => {
   const [queryClient] = React.useState(() => new QueryClient());
