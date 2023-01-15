@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 import { getRandomColor } from '@/util/getRandomColor';
 
@@ -12,11 +12,11 @@ export interface PlanBoxProps {
 
 const PlanBox = ({ plan, onDeleteButtonClick }: PlanBoxProps) => {
   const [animationName, setAnimationName] = useState('');
-
+  const color = useMemo(() => getRandomColor(), [plan]);
   return (
     <S.Container
       className={animationName}
-      randomColor={getRandomColor()}
+      randomColor={color}
       onMouseOver={() => setAnimationName(styles.isHover)}
       onMouseUp={() => setAnimationName(styles.isHover)}
       onMouseOut={() => setAnimationName('')}
