@@ -10,13 +10,13 @@ import * as S from './index.styles';
 
 const Signup = () => {
   const [id, changeId, isValidateId] = useValidateInput({
-    validator: REGEX.ID.test,
+    validator: (input: string) => REGEX.ID.test(input),
   });
   const [nickname, changeNickname, isValidateNickname] = useValidateInput({
-    validator: REGEX.NICKNAME.test,
+    validator: (input: string) => REGEX.NICKNAME.test(input),
   });
   const [password, changePassword, isValidatePassword] = useValidateInput({
-    validator: REGEX.PASSWORD.test,
+    validator: (input: string) => REGEX.PASSWORD.test(input),
   });
   const [
     confirmPassword,
@@ -24,7 +24,7 @@ const Signup = () => {
     isValidateConfirmPassword,
     setIsValidateConfirmPassword,
   ] = useValidateInput({
-    validator: REGEX.PASSWORD.test,
+    validator: (input: string) => REGEX.PASSWORD.test(input),
   });
   const attemptSignup = useSignup({
     id,
@@ -81,10 +81,11 @@ const Signup = () => {
       <S.InputSection>
         {inputList.map(item => (
           <ValidateInputLabel
-            key={item.state}
+            key={item.label}
             data={item.state}
             changeData={item.changeState}
             isValidateData={item.isValidateState}
+            inputType={item.inputType}
             label={item.label}
             message={item.message}
           />

@@ -12,7 +12,9 @@ const useValidateInput = ({ validator, initState = '' }: ValidateInputProps) => 
   const [isValidateData, setIsValidateData] = useState(false);
 
   useEffect(() => {
-    setIsValidateData(validator(data));
+    if (data) {
+      setIsValidateData(validator(data));
+    }
   }, [data, validator]);
 
   return [data, changeData, isValidateData, setIsValidateData] as const;
