@@ -23,4 +23,8 @@ const REGEX = {
   NICKNAME: /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]{2,19}$/,
 };
 
-export { SIZE, BUTTON_TYPE, ALIGN, REGEX };
+const ANIMATION_DELAY = {
+  LUCKY_BOX: 5,
+} as const;
+
+export { SIZE, BUTTON_TYPE, ALIGN, REGEX, ANIMATION_DELAY };

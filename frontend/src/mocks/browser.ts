@@ -1,6 +1,9 @@
 import { setupWorker } from 'msw';
 
-import { ArticleHandler } from './article';
 import { AuthHandler } from './auth';
+import { ArticleHandler } from './handlers/article';
+import { luckyHandlers } from './handlers/lucky';
 
-export const worker = setupWorker(...ArticleHandler, ...AuthHandler);
+const worker = setupWorker(...ArticleHandler, ...AuthHandler, ...luckyHandlers);
+
+export { worker };
