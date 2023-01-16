@@ -1,112 +1,94 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import Button from '@/components/Button';
-import Input from '@/components/Input';
-import useInput from '@/hooks/useInput';
-import useSnackBar from '@/hooks/useSnackBar';
+import ValidateInputLabel from '@/components/ValidateInputLabel';
 import { REGEX } from '@/constants';
+import useSignup from '@/hooks/useSignup';
+import useValidateInput from '@/hooks/useValidateInput';
 
 import * as S from './index.styles';
-import useSignup from '@/hooks/useSignup';
 
 const Signup = () => {
-  const [id, changeId] = useInput('');
-  const [password, changePassword] = useInput('');
-  const [nickname, changeNickname] = useInput('');
-  const [confirmPassword, changeConfirmPassword] = useInput('');
-
-  const [isValidateId, setIsValidateId] = useState(false);
-  const [isValidatePassword, setIsValidatePassword] = useState(false);
-  const [isValidateNickname, setIsValidateNickname] = useState(false);
-  const [isValidateConfirmPassword, setIsValidateConfirmPassword] = useState(false);
-  const { showSnackBar } = useSnackBar();
-  const mutateSignup = useSignup();
+  const [id, changeId, isValidateId] = useValidateInput({
+    validator: REGEX.ID.test,
+  });
+  const [nickname, changeNickname, isValidateNickname] = useValidateInput({
+    validator: REGEX.NICKNAME.test,
+  });
+  const [password, changePassword, isValidatePassword] = useValidateInput({
+    validator: REGEX.PASSWORD.test,
+  });
+  const [
+    confirmPassword,
+    changeConfirmPassword,
+    isValidateConfirmPassword,
+    setIsValidateConfirmPassword,
+  ] = useValidateInput({
+    validator: REGEX.PASSWORD.test,
+  });
+  const attemptSignup = useSignup({
+    id,
+    password,
+    nickname,
+    isValidateId,
+    isValidateNickname,
+    isValidatePassword,
+    isValidateConfirmPassword,
+  });
 
   useEffect(() => {
-    setIsValidateId(REGEX.ID.test(id));
-  }, [id]);
+    setIsValidateConfirmPassword(password === confirmPassword);
+  }, [password, confirmPassword, setIsValidateConfirmPassword]);
 
-  useEffect(() => {
-    setIsValidateNickname(REGEX.NICKNAME.test(nickname));
-  }, [nickname]);
-
-  useEffect(() => {
-    setIsValidatePassword(REGEX.PASSWORD.test(password));
-    setIsValidateConfirmPassword(
-      REGEX.PASSWORD.test(confirmPassword) && password === confirmPassword,
-    );
-  }, [password, confirmPassword]);
-
-  const attemptSignup = () => {
-    if (!isValidateId) {
-      showSnackBar('아이디는 영문, 숫자 조합으로 2~19자 사이여야 합니다.');
-      return;
-    }
-
-    if (!isValidatePassword) {
-      showSnackBar('비밀번호는 영문, 숫자, 특수문자 조합으로 8~19자 사이여야 합니다.');
-      return;
-    }
-
-    if (!isValidateNickname) {
-      showSnackBar('닉네임은 문자, 숫자 조합으로 2~19자 사이여야 합니다.');
-      return;
-    }
-
-    if (!isValidateConfirmPassword) {
-      showSnackBar('비밀번호 확인이 일치하지 않습니다.');
-      return;
-    }
-
-    mutateSignup.mutate({ id, password, nickname });
-  };
+  const inputList = [
+    {
+      state: id,
+      changeState: changeId,
+      isValidateState: isValidateId,
+      inputType: 'text',
+      label: '아이디',
+      message: '영문자, 숫자 조합으로 2~19자 입력해주세요.',
+    },
+    {
+      state: nickname,
+      changeState: changeNickname,
+      isValidateState: isValidateNickname,
+      inputType: 'text',
+      label: '닉네임',
+      message: '문자, 숫자 조합으로 2~19자 입력해주세요.',
+    },
+    {
+      state: password,
+      changeState: changePassword,
+      isValidateState: isValidatePassword,
+      inputType: 'password',
+      label: '비밀번호',
+      message: '영문자, 숫자, 특수문자 조합으로 8~19자 입력해주세요.',
+    },
+    {
+      state: confirmPassword,
+      changeState: changeConfirmPassword,
+      isValidateState: isValidateConfirmPassword,
+      inputType: 'password',
+      label: '비밀번호 확인',
+      message: '위의 비밀번호와 동일하게 입력해주세요.',
+    },
+  ];
 
   return (
     <S.Container>
       <h3>회원가입</h3>
       <S.InputSection>
-        <S.InputLabelContainer>
-          <S.Label>아이디</S.Label>
-          <S.InputContainer>
-            <Input value={id} onChange={changeId} isValid={id ? isValidateId : true} />
-            <p>영문자, 숫자 조합으로 2~19자 입력해주세요.</p>
-          </S.InputContainer>
-        </S.InputLabelContainer>
-        <S.InputLabelContainer>
-          <S.Label>닉네임</S.Label>
-          <S.InputContainer>
-            <Input
-              value={nickname}
-              onChange={changeNickname}
-              isValid={nickname ? isValidateNickname : true}
-            />
-            <p>문자, 숫자 조합으로 2~19자 입력해주세요.</p>
-          </S.InputContainer>
-        </S.InputLabelContainer>
-        <S.InputLabelContainer>
-          <S.Label>비밀번호</S.Label>
-          <S.InputContainer>
-            <Input
-              type="password"
-              value={password}
-              onChange={changePassword}
-              isValid={password ? isValidatePassword : true}
-            />
-            <p>영문자, 숫자, 특수문자 조합으로 8~19자 입력해주세요.</p>
-          </S.InputContainer>
-        </S.InputLabelContainer>
-        <S.InputLabelContainer>
-          <S.Label>비밀번호 확인</S.Label>
-          <S.InputContainer>
-            <Input
-              type="password"
-              value={confirmPassword}
-              onChange={changeConfirmPassword}
-              isValid={confirmPassword ? isValidateConfirmPassword : true}
-            />
-            <p>위의 비밀번호와 동일하게 입력해주세요.</p>
-          </S.InputContainer>
-        </S.InputLabelContainer>
+        {inputList.map(item => (
+          <ValidateInputLabel
+            key={item.state}
+            data={item.state}
+            changeData={item.changeState}
+            isValidateData={item.isValidateState}
+            label={item.label}
+            message={item.message}
+          />
+        ))}
       </S.InputSection>
       <Button
         size="large"

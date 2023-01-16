@@ -9,12 +9,6 @@ const BUTTON_TYPE = {
   BUTTON: 'button',
 } as const;
 
-const INPUT_TYPE = {
-  TEXT: 'text',
-  NUMBER: 'number',
-  PASSWORD: 'password',
-} as const;
-
 const ALIGN = {
   LEFT: 'left',
   CENTER: 'center',
@@ -29,4 +23,4 @@ const REGEX = {
   NICKNAME: /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]{2,19}$/,
 };
 
-export { SIZE, BUTTON_TYPE, INPUT_TYPE, ALIGN, REGEX };
+export { SIZE, BUTTON_TYPE, ALIGN, REGEX };

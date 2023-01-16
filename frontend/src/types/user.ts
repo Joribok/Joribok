@@ -1,10 +1,7 @@
-export type UserData = {
+export interface UserData {
   id: string;
   password: string;
   nickname: string;
-};
+}
 
-export type UserLoginData = {
-  id: UserData['id'];
-  password: UserData['password'];
-};
+export type UserLoginData = Pick<UserData, 'id' | 'password'>;
