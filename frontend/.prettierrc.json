@@ -4,5 +4,8 @@
   "printWidth": 100,
   "trailingComma": "all",
   "singleQuote": true,
-  "arrowParens": "avoid"
+  "arrowParens": "avoid",
+  "importOrder": ["^pages/(.*)$", "^@/(.*)$", "^[./]"],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
 }

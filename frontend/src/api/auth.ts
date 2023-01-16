@@ -1,4 +1,5 @@
 import { UserData, UserLoginData } from '@/types/user';
+
 import { instance } from '.';
 
 export const requestSignup = async (userData: UserData) => {

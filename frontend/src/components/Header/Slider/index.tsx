@@ -1,12 +1,11 @@
-import { useEffect, MouseEvent } from 'react';
 import { useAtomValue } from 'jotai';
+import { MouseEvent, useEffect } from 'react';
 
 import useClosingState from '@/hooks/useClosingState';
 import { userStateAtom } from '@/store';
 
 import Login from './Login';
 import Logoff from './Logoff';
-
 import * as S from './index.styles';
 
 const animationTime = 200;

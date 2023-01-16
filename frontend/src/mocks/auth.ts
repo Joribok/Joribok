@@ -1,5 +1,6 @@
-import { UserData, UserLoginData } from '@/types/user';
 import { rest } from 'msw';
+
+import { UserData, UserLoginData } from '@/types/user';
 
 const HOME_URL = 'https://localhost:3000/api';
 

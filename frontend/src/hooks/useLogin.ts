@@ -1,9 +1,10 @@
 import { useMutation } from '@tanstack/react-query';
-import { requestLogin } from '@/api/auth';
-
-import { useRouter } from 'next/router';
 import { useSetAtom } from 'jotai';
+import { useRouter } from 'next/router';
+
+import { requestLogin } from '@/api/auth';
 import { userStateAtom } from '@/store';
+
 import useSnackBar from './useSnackBar';
 
 const useLogin = () => {
