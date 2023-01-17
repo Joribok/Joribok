@@ -1,18 +1,15 @@
-import React from 'react';
-
-import { INPUT_TYPE } from '@/constants';
-import { InputType } from '@/types';
+import React, { HTMLInputTypeAttribute } from 'react';
 
 import * as S from './index.styles';
 
 export interface InputProps {
-  type?: InputType;
+  type?: HTMLInputTypeAttribute;
   isValid?: boolean;
   hasUnderline?: boolean;
 }
 
 const Input = ({
-  type = INPUT_TYPE.TEXT,
+  type = 'text',
   isValid = true,
   hasUnderline = false,
   ...inputAttribute

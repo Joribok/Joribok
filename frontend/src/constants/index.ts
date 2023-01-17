@@ -9,12 +9,6 @@ const BUTTON_TYPE = {
   BUTTON: 'button',
 } as const;
 
-const INPUT_TYPE = {
-  TEXT: 'text',
-  NUMBER: 'number',
-  PASSWORD: 'password',
-} as const;
-
 const ALIGN = {
   LEFT: 'left',
   CENTER: 'center',
@@ -26,10 +20,11 @@ const ALIGN = {
 const REGEX = {
   ID: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{2,19}$/,
   PASSWORD: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,19}$/,
+  NICKNAME: /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]{2,19}$/,
 };
 
 const ANIMATION_DELAY = {
   LUCKY_BOX: 5,
 } as const;
 
-export { SIZE, BUTTON_TYPE, INPUT_TYPE, ALIGN, REGEX, ANIMATION_DELAY };
+export { SIZE, BUTTON_TYPE, ALIGN, REGEX, ANIMATION_DELAY };
