@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+
 import Button from '@/components/Button';
 import Input from '@/components/Input';
-import useInput from '@/hooks/useInput';
-import useSnackBar from '@/hooks/useSnackBar';
 import { REGEX } from '@/constants';
+import useInput from '@/hooks/useInput';
+import useLogin from '@/hooks/useLogin';
+import useSnackBar from '@/hooks/useSnackBar';
 
 import * as S from './index.styles';
 
@@ -13,6 +15,7 @@ const Login = () => {
   const [password, changePassword] = useInput('');
   const [isValidate, setIsValidate] = useState(false);
   const { showSnackBar } = useSnackBar();
+  const mutateLogin = useLogin();
 
   useEffect(() => {
     setIsValidate(REGEX.ID.test(id) && REGEX.PASSWORD.test(password));
@@ -23,6 +26,8 @@ const Login = () => {
       showSnackBar('아이디와 비밀번호를 다시 확인해주세요.');
       return;
     }
+
+    mutateLogin.mutate({ id, password });
   };
 
   return (
@@ -48,7 +53,7 @@ const Login = () => {
         로그인
       </Button>
       <span>
-        아직 가입하지 않으셨다면, <Link href={'/login#'}>회원가입</Link> 하러 갈까요?
+        아직 가입하지 않으셨다면, <Link href={'/signup'}>회원가입</Link> 하러 갈까요?
       </span>
     </S.Container>
   );
