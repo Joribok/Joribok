@@ -4,6 +4,7 @@ import { useAtomValue } from 'jotai';
 
 import { userStateAtom } from '@/store';
 import loginSVG from '@/assets/svg/user/login.svg';
+import { PATH } from '@/constants';
 
 import * as S from '../index.styles';
 
@@ -24,7 +25,7 @@ const Login = ({ closeSlider }: LoginProps) => {
       </S.UserWrapper>
       <S.MenuWrapper>
         <p>로그아웃</p>
-        <Link onClick={closeSlider} href="/me">
+        <Link onClick={closeSlider} href={PATH.BROWSER.ME}>
           마이페이지
         </Link>
         <p>글 쓰러 가기</p>

@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 
 import { requestLogin } from '@/api/auth';
 import { userStateAtom } from '@/store';
+import { PATH } from '@/constants';
 
 import useSnackBar from './useSnackBar';
 
@@ -16,7 +17,7 @@ const useLogin = () => {
     onSuccess: ({ id, nickname }) => {
       setUserState({ isLogin: true, id, nickname });
       showSnackBar(`${nickname}님 환영합니다.`);
-      router.push('/');
+      router.push(PATH.BROWSER.MAIN);
     },
     onError: ({
       response: {
