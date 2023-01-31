@@ -12,17 +12,22 @@ export interface PlanBoxProps {
 
 const PlanBox = ({ plan, onDeleteButtonClick }: PlanBoxProps) => {
   const [animationName, setAnimationName] = useState('');
-  const color = useMemo(() => getRandomColor(), [plan]);
+  const randomColor = useMemo(() => getRandomColor(), [plan]);
+
+  const settingAnimationName = (className: string) => () => {
+    setAnimationName(className);
+  };
+
   return (
     <S.Container
       className={animationName}
-      randomColor={color}
-      onMouseOver={() => setAnimationName(styles.isHover)}
-      onMouseUp={() => setAnimationName(styles.isHover)}
-      onMouseOut={() => setAnimationName('')}
+      randomColor={randomColor}
+      onMouseOver={settingAnimationName(styles.isHover)}
+      onMouseUp={settingAnimationName(styles.isHover)}
+      onMouseOut={settingAnimationName('')}
     >
       <S.Content>{plan}</S.Content>
-      <S.DeleteButton onClick={onDeleteButtonClick} aria-label={'계획 삭제하기'}>
+      <S.DeleteButton onClick={onDeleteButtonClick} aria-label="계획 삭제하기">
         <S.DeleteIcon />
       </S.DeleteButton>
     </S.Container>

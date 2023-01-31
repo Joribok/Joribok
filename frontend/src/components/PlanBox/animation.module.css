@@ -8,5 +8,5 @@
 }
 
 .isHover {
-  animation: bounce 0.3s infinite;
+  animation: bounce 0.3s alternate;
 }

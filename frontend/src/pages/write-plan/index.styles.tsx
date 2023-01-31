@@ -8,7 +8,7 @@ export const Container = styled.article`
 `;
 
 export const Title = styled.h2`
-  font-size: 20px;
+  font-size: 1.125rem;
   width: 100%;
   text-align: center;
   margin-top: 20px;
@@ -19,7 +19,7 @@ export const Title = styled.h2`
   }
 `;
 
-export const InputContainer = styled.div`
+export const FormContainer = styled.form`
   display: flex;
   justify-content: space-around;
   width: 100%;
@@ -28,10 +28,6 @@ export const InputContainer = styled.div`
 
   input {
     width: 60%;
-  }
-
-  button {
-    width: 50px;
   }
 `;
 

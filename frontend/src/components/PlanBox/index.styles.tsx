@@ -10,7 +10,7 @@ export const Container = styled.li<{ randomColor: string }>`
   align-items: center;
 
   width: 100%;
-  min-height: 50px;
+  min-height: 3.125rem;
   list-style: none;
   border-radius: 10px;
 

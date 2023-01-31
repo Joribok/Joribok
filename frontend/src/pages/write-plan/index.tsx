@@ -11,6 +11,7 @@ import usePostArticle from '@/hooks/article/usePostArticle';
 import { userStateAtom } from '@/store';
 
 import * as S from './index.styles';
+import { SIZE } from '@/constants';
 
 const WritingPlan = () => {
   const userNickName = useAtomValue(userStateAtom);
@@ -25,9 +26,14 @@ const WritingPlan = () => {
     setPlan(e.target.value);
   };
 
-  const onPlanConfirmButtonClick = () => {
+  const onAddPlanButtonClick = () => {
     if (planList.length >= 10) {
       showSnackBar('계획은 10개까지 입력하실 수 있습니다');
+      return;
+    }
+
+    if (plan.trim().length <= 0) {
+      showSnackBar('빈 공백은 입력하실 수 없습니다');
       return;
     }
 
@@ -35,6 +41,7 @@ const WritingPlan = () => {
       showSnackBar('중복되는 계획은 입력하실 수 없습니다');
       return;
     }
+
     setPlanList([...planList, plan]);
     setPlan('');
   };
@@ -45,7 +52,7 @@ const WritingPlan = () => {
 
   const onPlanSaveButtonClick = () => {
     if (planList.length === 0) {
-      showSnackBar('계획은 입력해주세요');
+      showSnackBar('계획을 입력해주세요');
       return;
     }
     postArticle({ planList });
@@ -56,15 +63,22 @@ const WritingPlan = () => {
       <S.Title>
         <span>{userNickName.nickname}</span> 님의 새해 목표
       </S.Title>
-      <S.InputContainer>
+      <S.FormContainer
+        onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
+          e.preventDefault();
+          onAddPlanButtonClick();
+        }}
+      >
         <Input type={'text'} value={plan} onChange={onPlanInputChange} />
-        <Button onClick={onPlanConfirmButtonClick}>확인</Button>
-      </S.InputContainer>
+        <Button type="submit" size={SIZE.SMALL}>
+          확인
+        </Button>
+      </S.FormContainer>
       <S.InputResultContainer>
         {planList.length >= 1 ? (
-          planList.map((item, index) => (
+          planList.map(item => (
             <PlanBox
-              key={index}
+              key={item}
               plan={item}
               onDeleteButtonClick={() => {
                 onPlanDeleteButtonClick(item);
