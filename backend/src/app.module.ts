@@ -7,10 +7,13 @@ import { UserService } from './user/user.service';
 import { ArticleModule } from './article/article.module';
 import { ArticleController } from './article/article.controller';
 import { ArticleService } from './article/article.service';
+import { LuckyModule } from './lucky/lucky.module';
+import { LuckyController } from './lucky/lucky.controller';
+import { LuckyService } from './lucky/lucky.service';
 
 @Module({
-  imports: [UserModule, ArticleModule],
-  controllers: [AppController, UserController, ArticleController],
-  providers: [AppService, UserService, ArticleService],
+  imports: [UserModule, ArticleModule, LuckyModule],
+  controllers: [AppController, UserController, ArticleController, LuckyController],
+  providers: [AppService, UserService, ArticleService, LuckyService],
 })
 export class AppModule {}
