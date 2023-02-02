@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import logoffSVG from '@/assets/svg/user/logoff.svg';
+import { PATH } from '@/constants';
 
 import * as S from '../index.styles';
 
@@ -17,10 +18,10 @@ const Logoff = ({ closeSlider }: LogoffProps) => {
         로그인 해주세요 :(
       </S.UserWrapper>
       <S.MenuWrapper>
-        <Link onClick={closeSlider} href={'/login'}>
+        <Link onClick={closeSlider} href={PATH.BROWSER.LOGIN}>
           로그인
         </Link>
-        <Link onClick={closeSlider} href={'/signup'}>
+        <Link onClick={closeSlider} href={PATH.BROWSER.SIGNUP}>
           회원가입
         </Link>
       </S.MenuWrapper>

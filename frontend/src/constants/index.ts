@@ -1,3 +1,19 @@
+const PATH = {
+  BROWSER: {
+    MAIN: '/',
+    LOGIN: '/login',
+    SIGNUP: '/signup',
+    ME: '/me',
+    WRITE_PLAN: '/write-plan',
+  },
+  API: {
+    LOGIN: '/login',
+    SIGNUP: '/signup',
+    LUCKY: '/lucky',
+    ME: '/me',
+  },
+} as const;
+
 const SIZE = {
   SMALL: 'small',
   MEDIUM: 'medium',
@@ -27,4 +43,4 @@ const ANIMATION_DELAY = {
   LUCKY_BOX: 5,
 } as const;
 
-export { SIZE, BUTTON_TYPE, ALIGN, REGEX, ANIMATION_DELAY };
+export { PATH, SIZE, BUTTON_TYPE, ALIGN, REGEX, ANIMATION_DELAY };
