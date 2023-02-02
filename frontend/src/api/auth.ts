@@ -9,6 +9,6 @@ export const requestSignup = async (userData: UserData) => {
 };
 
 export const requestLogin = async (userLoginData: UserLoginData) => {
-  const { data } = await instance.post(PATH.API.SIGNUP, userLoginData);
+  const { data } = await instance.post(PATH.API.LOGIN, userLoginData);
   return data;
 };
