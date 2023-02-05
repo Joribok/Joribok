@@ -1,5 +1,6 @@
 import { PATH } from '@/constants';
-import { Article, AllArticleResponseType } from '@/types/article';
+import { Article, AllArticleResponseType, Comment } from '@/types/article';
+
 import { instance, instanceWithAccessToken } from '.';
 
 export const getTotalArticles = async ({ pageNumber }: { pageNumber: number }) => {
@@ -24,4 +25,14 @@ const getGauge = (id: Article['id']) => {
     .then(response => response.data.gauge);
 };
 
-export { getArticle, getGauge };
+const postComment = (id: Article['id'], comment: Comment) => {
+  return instance.post(`${PATH.API.ARTICLE}/${id}/comment`, comment);
+};
+
+const getComments = (id: Article['id']) => {
+  return instance
+    .get<{ comments: Comment[] }>(`${PATH.API.ARTICLE}/${id}/comment`)
+    .then(response => response.data);
+};
+
+export { getArticle, getGauge, postComment, getComments };
