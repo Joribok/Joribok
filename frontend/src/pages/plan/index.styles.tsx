@@ -3,9 +3,9 @@ import styled from '@emotion/styled';
 const Container = styled.section`
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 3rem;
 
-  padding: 1.5rem 1rem;
+  padding: 1.5rem 1.5rem 3rem;
 `;
 
 const Title = styled.div`
@@ -34,10 +34,22 @@ const ShareButton = styled.button`
   }
 `;
 
+const GaugeContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  color: gray;
+
+  span {
+    text-align: center;
+  }
+`;
+
 const PlanBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
 `;
 
-export { Container, Title, ShareButton, PlanBox };
+export { Container, Title, ShareButton, GaugeContainer, PlanBox };
