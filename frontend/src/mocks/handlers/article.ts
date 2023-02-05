@@ -53,4 +53,18 @@ export const ArticleHandler = [
       }),
     );
   }),
+  rest.get(`${HOME_URL}/article/:id`, (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({
+        nickname: '하리',
+        plans: [
+          '5월 젤다 출시 얌전히 기다리기',
+          '취직하기',
+          '수업 잘 듣기',
+          '졸업 프로젝트 잘 마치기',
+        ],
+      }),
+    );
+  }),
 ];

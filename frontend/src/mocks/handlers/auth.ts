@@ -34,11 +34,11 @@ export const AuthHandler = [
         return res(ctx.status(400), ctx.json({ message: '입력값을 다시 확인해주세요.' }));
       }
 
-      if (id !== 'admin1') {
+      if (id !== 'lah1203') {
         return res(ctx.status(400), ctx.json({ message: '존재하지 않는 아이디입니다.' }));
       }
 
-      if (password !== '1q2w3e!!') {
+      if (password !== 'tntl1122!') {
         return res(ctx.status(400), ctx.json({ message: '잘못된 패스워드입니다.' }));
       }
 
@@ -47,7 +47,7 @@ export const AuthHandler = [
         ctx.json({
           accessToken:
             'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluMSIsIm5pY2tuYW1lIjoi6rSA66as7J6QIiwiaWF0IjoxNTE2MjM5MDIyfQ.loSb7dhucYVKhce3zy7vN-ffCjT73dunky8w_pMjLA0',
-          id: 'admin1',
+          id: 'lah1203',
           nickname: '관리자',
         }),
       );
