@@ -18,4 +18,10 @@ const getArticle = (id: Article['id']) => {
   return instance.get<Article>(`${PATH.API.ARTICLE}/${id}`).then(response => response.data);
 };
 
-export { getArticle };
+const getGauge = (id: Article['id']) => {
+  return instance
+    .get<{ gauge: number }>(`${PATH.API.ARTICLE}/${id}/gauge`)
+    .then(response => response.data.gauge);
+};
+
+export { getArticle, getGauge };

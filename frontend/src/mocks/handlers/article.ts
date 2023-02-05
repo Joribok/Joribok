@@ -67,4 +67,7 @@ export const ArticleHandler = [
       }),
     );
   }),
+  rest.get(`${HOME_URL}/article/:id/gauge`, (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json({ gauge: 80 }));
+  }),
 ];
