@@ -1,7 +1,9 @@
-import { TotalArticle } from '@/types/article';
 import { rest } from 'msw';
 
+import { Comment, TotalArticle } from '@/types/article';
+
 import mockArticle from '../data/totalArticle.json';
+
 const HOME_URL = 'https://localhost:3000/api';
 
 export const ArticleHandler = [
@@ -50,6 +52,43 @@ export const ArticleHandler = [
         pageNumber: Number(pageNumber) + 1,
         hasNext: true,
         totalCount: mockArticle.articles.length,
+      }),
+    );
+  }),
+  rest.get(`${HOME_URL}/article/:id`, (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({
+        nickname: '하리',
+        plans: [
+          '5월 젤다 출시 얌전히 기다리기',
+          '취직하기',
+          '수업 잘 듣기',
+          '졸업 프로젝트 잘 마치기',
+        ],
+      }),
+    );
+  }),
+  rest.get(`${HOME_URL}/article/:id/gauge`, (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json({ gauge: 80 }));
+  }),
+  rest.post(`${HOME_URL}/article/:id/comment`, (req, res, ctx) => {
+    return req.json<Comment>().then(({ nickname, gauge, content }) => {
+      if (nickname.length < 1 || gauge < 0 || gauge % 1 !== 0 || content.length < 1) {
+        return res(ctx.status(400), ctx.json({ message: '입력하신 댓글을 다시 확인해주세요.' }));
+      }
+
+      return res(ctx.status(201));
+    });
+  }),
+  rest.get(`${HOME_URL}/article/:id/comment`, (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({
+        comments: [
+          { nickname: '하리', gauge: 59, content: '화이팅!' },
+          { nickname: '하리', gauge: 59, content: '화이팅!' },
+        ],
       }),
     );
   }),

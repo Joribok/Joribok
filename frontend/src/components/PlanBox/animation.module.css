@@ -1,0 +1,12 @@
+@keyframes bounce {
+  from {
+    transform: rotate(-1deg) translateY(-1px);
+  }
+  to {
+    transform: rotate(1deg) translateY(1px);
+  }
+}
+
+.isHover {
+  animation: bounce 0.3s alternate;
+}

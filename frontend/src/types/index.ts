@@ -13,6 +13,11 @@ export interface Lucky {
   color: string;
 }
 
+export interface Me {
+  plans: string[];
+  fortunes: Lucky;
+}
+
 declare module '@emotion/react' {
   export interface Theme {
     colors: Record<UnionizeKeys<typeof theme.colors>, string>;

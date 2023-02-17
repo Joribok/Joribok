@@ -1,12 +1,18 @@
+import Link from 'next/link';
 import Image from 'next/image';
 import { useAtomValue } from 'jotai';
 
 import { userStateAtom } from '@/store';
 import loginSVG from '@/assets/svg/user/login.svg';
+import { PATH } from '@/constants';
 
 import * as S from '../index.styles';
 
-const Login = () => {
+interface LoginProps {
+  closeSlider: () => void;
+}
+
+const Login = ({ closeSlider }: LoginProps) => {
   const { nickname } = useAtomValue(userStateAtom);
 
   return (
@@ -19,7 +25,9 @@ const Login = () => {
       </S.UserWrapper>
       <S.MenuWrapper>
         <p>로그아웃</p>
-        <p>마이페이지</p>
+        <Link onClick={closeSlider} href={PATH.BROWSER.ME}>
+          마이페이지
+        </Link>
         <p>글 쓰러 가기</p>
       </S.MenuWrapper>
     </S.Container>
