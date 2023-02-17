@@ -16,3 +16,9 @@ export interface AllArticleResponseType {
   hasNext: boolean;
   totalCount: number;
 }
+
+export interface Comment {
+  nickname: string;
+  gauge: number;
+  content: string;
+}

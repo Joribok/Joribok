@@ -5,12 +5,14 @@ const PATH = {
     SIGNUP: '/signup',
     ME: '/me',
     WRITE_PLAN: '/write-plan',
+    PLAN: '/plan',
   },
   API: {
     LOGIN: '/login',
     SIGNUP: '/signup',
     LUCKY: '/lucky',
     ME: '/me',
+    ARTICLE: '/article',
   },
 } as const;
 

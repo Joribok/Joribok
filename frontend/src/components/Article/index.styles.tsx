@@ -30,6 +30,8 @@ export const Container = styled.li<{ direction: AlignDirection }>`
   align-items: center;
   gap: 1.25rem;
   flex-direction: ${({ direction }) => (direction === ALIGN.LEFT ? ALIGN.ROW : ALIGN.ROW_REVERSE)};
+
+  color: ${({ theme: { colors } }) => colors.BLACK_500};
 `;
 
 export const UserName = styled.div<{ randomColor: string }>`

@@ -5,11 +5,15 @@ type useInputProps = string | number;
 const useInput = <T extends useInputProps>(initialValue: T) => {
   const [value, setValue] = useState(initialValue);
 
-  const changeValue: ChangeEventHandler<HTMLInputElement> = e => {
+  const changeValue: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> = e => {
     setValue(e.currentTarget.value as T);
   };
 
-  return [value, changeValue] as const;
+  const resetValue = () => {
+    setValue(initialValue);
+  };
+
+  return [value, changeValue, resetValue] as const;
 };
 
 export default useInput;
