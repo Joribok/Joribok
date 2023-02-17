@@ -4,7 +4,7 @@ import Lottie from 'lottie-react';
 
 import Button from '@/components/Button';
 
-import { PATH } from '@/constants';
+import { BUTTON_TYPE, PATH } from '@/constants';
 import ServerErrorAnimation from '@/assets/ServerErrorAnimation.json';
 
 import styled from '@emotion/styled';
@@ -15,7 +15,7 @@ const ServerError = () => {
       <Lottie animationData={ServerErrorAnimation} loop={true} />
       <Link href={PATH.BROWSER.MAIN}>
         <Title>서버 에러 발생</Title>
-        <Button type="button">홈으로 돌아가기</Button>
+        <Button type={BUTTON_TYPE.BUTTON}>홈으로 돌아가기</Button>
       </Link>
     </Container>
   );

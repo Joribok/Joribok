@@ -4,7 +4,7 @@ import Lottie from 'lottie-react';
 
 import Button from '@/components/Button';
 
-import { PATH } from '@/constants';
+import { BUTTON_TYPE, PATH } from '@/constants';
 import NotFoundAnimation from '@/assets/NotFoundAnimation.json';
 
 import styled from '@emotion/styled';
@@ -14,7 +14,7 @@ const NotFound = () => {
     <Container>
       <Lottie animationData={NotFoundAnimation} loop={true} />
       <Link href={PATH.BROWSER.MAIN}>
-        <Button type={'button'}>홈으로 돌아가기</Button>
+        <Button type={BUTTON_TYPE.BUTTON}>홈으로 돌아가기</Button>
       </Link>
     </Container>
   );
