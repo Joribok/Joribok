@@ -1,9 +1,11 @@
 import { useState } from 'react';
 
 import useHeader from '@/hooks/useHeader';
+import { PATH } from '@/constants';
+
+import Slider from './Slider';
 
 import * as S from './index.styles';
-import Slider from './Slider';
 
 const Header = () => {
   const { visible } = useHeader();
@@ -20,7 +22,7 @@ const Header = () => {
   return (
     <>
       <S.Container className={visible ? 'show' : 'hide'}>
-        <S.Wrapper href="/">
+        <S.Wrapper href={PATH.BROWSER.MAIN}>
           <S.Logo />
           JORIBOK
         </S.Wrapper>

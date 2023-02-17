@@ -9,6 +9,12 @@ const globalStyle = css`
   ${emotionReset}
   ${fontStyle}
 
+  @counter-style goal-counter {
+    system: cyclic;
+    symbols: 🎋 🪅 🪄;
+    suffix: ' ';
+  }
+
   :root {
     font-size: 3.2vw;
   }

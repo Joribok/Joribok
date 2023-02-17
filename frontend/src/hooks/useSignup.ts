@@ -2,6 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 
 import { requestSignup } from '@/api/auth';
+import { PATH } from '@/constants';
 
 import useSnackBar from './useSnackBar';
 
@@ -30,7 +31,7 @@ const useSignup = ({
   const mutateSignup = useMutation(['signup'], requestSignup, {
     onSuccess: () => {
       showSnackBar(`회원가입에 성공했습니다. 가입한 계정으로 로그인해주세요.`);
-      router.push('/login');
+      router.push(PATH.BROWSER.LOGIN);
     },
     onError: ({
       response: {
