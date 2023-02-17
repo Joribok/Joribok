@@ -11,7 +11,7 @@ export const AuthHandler = [
         return res(ctx.status(400), ctx.json({ message: '입력값을 다시 확인해주세요.' }));
       }
 
-      if (id === 'admin1') {
+      if (id === 'admin1234') {
         return res(
           ctx.status(400),
           ctx.json({ message: '이미 존재하는 아이디입니다. 다시 입력해주세요.' }),
@@ -34,11 +34,11 @@ export const AuthHandler = [
         return res(ctx.status(400), ctx.json({ message: '입력값을 다시 확인해주세요.' }));
       }
 
-      if (id !== 'lah1203') {
+      if (id !== 'admin1234') {
         return res(ctx.status(400), ctx.json({ message: '존재하지 않는 아이디입니다.' }));
       }
 
-      if (password !== 'tntl1122!') {
+      if (password !== 'admin1234!') {
         return res(ctx.status(400), ctx.json({ message: '잘못된 패스워드입니다.' }));
       }
 
