@@ -4,6 +4,6 @@ import { LuckyController } from './lucky.controller';
 
 @Module({
   controllers: [LuckyController],
-  providers: [LuckyService]
+  providers: [LuckyService],
 })
 export class LuckyModule {}
