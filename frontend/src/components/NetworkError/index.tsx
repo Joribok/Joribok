@@ -30,7 +30,7 @@ const NetworkError = () => {
     return (
       <Container>
         <Lottie animationData={ServerErrorAnimation} loop={true} />
-        <Title>서버 에러 발생</Title>
+        <Title>인터넷 연결이 끊겼습니다</Title>
         <div>잠시 후에 다시 시도해주세요</div>
       </Container>
     );
@@ -51,7 +51,7 @@ const Container = styled.section`
   bottom: 0;
   right: 0;
 
-  background-color: white;
+  background-color: ${({ theme }) => theme.colors.WHITE_100};
 
   z-index: 100;
 `;
@@ -63,6 +63,8 @@ const Title = styled.h2`
   margin-top: 20px;
   margin-bottom: 40px;
   font-weight: 800;
+
+  color: ${({ theme }) => theme.colors.BLUE_500};
 `;
 
 export default NetworkError;
