@@ -7,7 +7,7 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { ArticleModule } from './article/article.module';
 import { LuckyModule } from './lucky/lucky.module';
-import { User } from './user/entities/user.entity';
+import User from './user/entities/user.entity';
 import { Article } from './article/entities/article.entity';
 import { Lucky } from './lucky/entities/lucky.entity';
 
