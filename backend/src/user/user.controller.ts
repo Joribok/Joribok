@@ -1,4 +1,4 @@
-import { Controller, Body, Post } from '@nestjs/common';
+import { Controller, Body, Post, Res, HttpStatus } from '@nestjs/common';
 
 import CreateUserDto from './dto/create-user.dto';
 import UserLoginDto from './dto/login-user.dto';
@@ -14,9 +14,11 @@ export default class UserController {
   }
 
   @Post('/login')
-  async login(@Body() dto: UserLoginDto): Promise<void> {
-    const { userId, password } = dto;
+  async login(@Body() dto: UserLoginDto, @Res() res): Promise<void> {
+    const { id, password } = dto;
 
-    await this.userService.login(userId, password);
+    const user = await this.userService.login(id, password);
+
+    res.status(HttpStatus.OK).send(user);
   }
 }

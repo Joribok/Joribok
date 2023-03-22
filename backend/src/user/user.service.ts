@@ -1,5 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { JwtService } from '@nestjs/jwt';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 
@@ -11,6 +12,7 @@ export default class UserService {
   constructor(
     @InjectRepository(User)
     private usersRepository: Repository<User>,
+    private readonly jwtService: JwtService,
   ) {}
 
   async createUser({ userId, password, nickname }: CreateUserDto) {
@@ -59,10 +61,34 @@ export default class UserService {
     return newUser;
   }
 
-  async login(id: string, password: string): Promise<string> {
-    // 1. DB에서 찾기
-    // 2. DB에 있으면 JWT 발급
-    console.log('login', id, password);
-    throw new Error('회원가입을 해주세요');
+  async login(userId: string, password: string) {
+    // 1. 해당 id의 사용자를 DB에서 찾기
+    const user = await this.usersRepository.findOne({ where: { userId } });
+
+    // 1.1. 없으면 에러 반환
+    if (!user) {
+      throw new HttpException('로그인에 실패하였습니다.', HttpStatus.BAD_REQUEST);
+    }
+
+    // 2. password가 맞는지 확인
+    const isPasswordMatching = await bcrypt.compare(password, user.password);
+
+    // 2.1. 틀리면 에러 반환
+    if (!isPasswordMatching) {
+      throw new HttpException('로그인에 실패하였습니다.', HttpStatus.BAD_REQUEST);
+    }
+
+    // 3. 맞으면 JWT 발급
+    const accessToken = await this.generateAccessToken(user);
+
+    return {
+      id: user.userId,
+      nickname: user.nickname,
+      accessToken,
+    };
+  }
+
+  private async generateAccessToken(user: User): Promise<string> {
+    return this.jwtService.sign(Object.assign({}, user));
   }
 }

@@ -1,4 +1,4 @@
 export default class UserLoginDto {
-  userId: string;
+  id: string;
   password: string;
 }
