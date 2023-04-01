@@ -91,4 +91,34 @@ export default class UserService {
   private async generateAccessToken(user: User): Promise<string> {
     return this.jwtService.sign(Object.assign({}, user));
   }
+
+  // 인증 확인
+  async validateToken(authHeader: string): Promise<User> {
+    if (!authHeader.startsWith('Bearer ')) {
+      throw new HttpException('Invalid token', HttpStatus.UNAUTHORIZED);
+    }
+
+    const token = authHeader.substring(7);
+    let decodedToken;
+
+    try {
+      decodedToken = this.jwtService.verify(token);
+    } catch (error) {
+      throw new HttpException('Invalid token', HttpStatus.UNAUTHORIZED);
+    }
+
+    const user = await this.usersRepository.findOne({ where: { userId: decodedToken.userId } });
+
+    if (!user) {
+      throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+    }
+
+    return user;
+  }
+
+  async findById(userId: string) {
+    const userById = await this.usersRepository.findOne({ where: { userId } });
+
+    return userById;
+  }
 }
