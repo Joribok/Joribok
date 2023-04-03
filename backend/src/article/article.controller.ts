@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Query, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Query, Param, Res, HttpStatus } from '@nestjs/common';
 import { ArticleService } from './article.service';
 import { CreateArticleDto } from './dto/create-article.dto';
 
@@ -7,9 +7,10 @@ export class ArticleController {
   constructor(private readonly articleService: ArticleService) {}
 
   @Post()
-  async create(@Body() createArticleDto: CreateArticleDto): Promise<void> {
+  async create(@Body() createArticleDto: CreateArticleDto, @Res() res): Promise<void> {
     const { plans } = createArticleDto;
     await this.articleService.createArticle(plans);
+    res.status(HttpStatus.CREATED).send();
   }
 
   @Get()
