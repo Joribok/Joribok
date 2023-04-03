@@ -5,10 +5,14 @@ import CreateUserDto from './dto/create-user.dto';
 import UserLoginDto from './dto/login-user.dto';
 import User from './entities/user.entity';
 import UserService from './user.service';
+import AuthService from 'src/auth/auth.service';
 
 @Controller()
 export default class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    private readonly userService: UserService,
+    private readonly authService: AuthService,
+  ) {}
 
   @Post('/signup')
   async createUser(@Body() dto: CreateUserDto): Promise<void> {
@@ -27,6 +31,6 @@ export default class UserController {
   @Get('/me')
   @UseGuards(AuthGuard('jwt'))
   async getProfile(@Headers('authorization') authHeader: string): Promise<User> {
-    return this.userService.validateToken(authHeader);
+    return this.authService.validateToken(authHeader);
   }
 }
