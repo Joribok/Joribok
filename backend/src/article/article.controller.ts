@@ -14,14 +14,23 @@ export class ArticleController {
   }
 
   @Get()
-  async getPages(@Query() query) {
-    const { pageNumber } = query;
+  async getPages(@Query('pageNumber') pageNumber) {
     const articleList = await this.articleService.findAll(Number(pageNumber));
+    console.log(articleList);
   }
 
   @Get(':articleId')
-  async getArticle(@Param('articleId') articleId: string) {
+  async getArticle(@Param('articleId') articleId: string, @Res() res) {
     const article = await this.articleService.findOne(Number(articleId));
-    console.log(article);
+    if (!article) {
+      res
+        .status(HttpStatus.BAD_REQUEST)
+        .send({ message: '입력하신 articleId를 다시 확인해주세요' });
+    }
+    if (article) {
+      const plans = JSON.parse(article.plans);
+      const nickName = 'SAGE'; // 이곳에서 UserId를 통해서 닉네임 값 받아와야함
+      res.status(HttpStatus.OK).send({ id: article.id, plans, nickName });
+    }
   }
 }

@@ -24,7 +24,7 @@ export class ArticleService {
   private async saveArticle(nickName: string, plans: string[]) {
     const article = new Article();
     article.userId = nickName; // userId 임의로 지정
-    article.plans = plans.join(',');
+    article.plans = JSON.stringify(plans);
     article.comments = ''; //  최초 생성이므로 빈 배열 저장
     article.gauge = 0; //  최초 생성이므로 0
     await this.articleRepository.save(article);
@@ -32,6 +32,9 @@ export class ArticleService {
 
   async findAll(pageNumber: number) {
     console.log(pageNumber);
+    const offset = pageNumber;
+    const limit = 10;
+    return await this.articleRepository.findAndCount({ take: pageNumber, skip: 10 });
     //return pageNumber
     // {
     //   articles : [
@@ -48,7 +51,7 @@ export class ArticleService {
     return `This action returns all article`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} article`;
+  async findOne(id: number) {
+    return await this.articleRepository.findOneBy({ id });
   }
 }
