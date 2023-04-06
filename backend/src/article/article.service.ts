@@ -3,6 +3,7 @@ import { checkArticleValidate } from './utils/checkValidate';
 import { Article } from './entities/article.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { PAGE_PER_COUNT } from 'src/constant';
 
 @Injectable()
 export class ArticleService {
@@ -10,6 +11,7 @@ export class ArticleService {
     @InjectRepository(Article)
     private articleRepository: Repository<Article>,
   ) {}
+
   async createArticle(plans: string[]) {
     if (checkArticleValidate(plans)) {
       // 현재 로그인 중  user의 네이밍을 가지고 와야 함
@@ -30,25 +32,35 @@ export class ArticleService {
     await this.articleRepository.save(article);
   }
 
+  private findArticleState = async (pageNumber: number) => {
+    const totalCount = await this.articleRepository.count();
+    const hasNext = totalCount > (pageNumber + 1) * PAGE_PER_COUNT;
+    return { totalCount, hasNext };
+  };
+
+  private modifyArticleForm = (articleList: Article[]) => {
+    return articleList.map(item => {
+      return {
+        id: item.id,
+        nickName: item.userId,
+        plan: JSON.parse(item.plans)[0],
+      };
+    });
+  };
+
   async findAll(pageNumber: number) {
-    console.log(pageNumber);
-    const offset = pageNumber;
-    const limit = 10;
-    return await this.articleRepository.findAndCount({ take: pageNumber, skip: 10 });
-    //return pageNumber
-    // {
-    //   articles : [
-    //     {
-    //       id: "",
-    //       nickname:""
-    //       plan: '',
-    //     }
-    //   ],
-    //   pageNumber: 1,
-    //   hasNext: false
-    //   totalCount: 11
-    // }
-    return `This action returns all article`;
+    const articleList = await this.articleRepository.find({
+      take: PAGE_PER_COUNT,
+      skip: pageNumber * PAGE_PER_COUNT,
+    });
+    const { totalCount, hasNext } = await this.findArticleState(pageNumber);
+
+    return {
+      articles: this.modifyArticleForm(articleList),
+      pageNumber: pageNumber,
+      hasNext,
+      totalCount,
+    };
   }
 
   async findOne(id: number) {

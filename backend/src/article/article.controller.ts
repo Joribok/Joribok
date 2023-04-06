@@ -14,9 +14,15 @@ export class ArticleController {
   }
 
   @Get()
-  async getPages(@Query('pageNumber') pageNumber) {
-    const articleList = await this.articleService.findAll(Number(pageNumber));
-    console.log(articleList);
+  async getPages(@Query('pageNumber') pageNumber, @Res() res) {
+    const result = await this.articleService.findAll(Number(pageNumber));
+    if (result.articles.length === 0) {
+      res
+        .status(HttpStatus.BAD_REQUEST)
+        .send({ message: '입력하신 pageNumber을 다시 확인해주세요' });
+      return;
+    }
+    res.status(HttpStatus.OK).send(result);
   }
 
   @Get(':articleId')
