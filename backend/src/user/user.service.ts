@@ -1,18 +1,18 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { JwtService } from '@nestjs/jwt';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 
 import User from './entities/user.entity';
 import CreateUserDto from './dto/create-user.dto';
+import AuthService from 'src/auth/auth.service';
 
 @Injectable()
 export default class UserService {
   constructor(
     @InjectRepository(User)
     private usersRepository: Repository<User>,
-    private readonly jwtService: JwtService,
+    private readonly authService: AuthService,
   ) {}
 
   async createUser({ userId, password, nickname }: CreateUserDto) {
@@ -79,8 +79,7 @@ export default class UserService {
     }
 
     // 3. 맞으면 JWT 발급
-    const accessToken = await this.generateAccessToken(user);
-
+    const accessToken = await this.authService.generateAccessToken(user);
     return {
       id: user.userId,
       nickname: user.nickname,
@@ -88,7 +87,9 @@ export default class UserService {
     };
   }
 
-  private async generateAccessToken(user: User): Promise<string> {
-    return this.jwtService.sign(Object.assign({}, user));
+  async findById(userId: string) {
+    const userById = await this.usersRepository.findOne({ where: { userId } });
+
+    return userById;
   }
 }

@@ -7,6 +7,7 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { ArticleModule } from './article/article.module';
 import { LuckyModule } from './lucky/lucky.module';
+import { AuthModule } from './auth/auth.module';
 import User from './user/entities/user.entity';
 import { Article } from './article/entities/article.entity';
 import { Lucky } from './lucky/entities/lucky.entity';
@@ -16,6 +17,7 @@ import { Lucky } from './lucky/entities/lucky.entity';
     UserModule,
     ArticleModule,
     LuckyModule,
+    AuthModule,
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: '.env',
@@ -28,7 +30,7 @@ import { Lucky } from './lucky/entities/lucky.entity';
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
       entities: [User, Article, Lucky],
-      synchronize: false,
+      synchronize: true,
     }),
   ],
   controllers: [AppController],
