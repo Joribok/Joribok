@@ -9,6 +9,7 @@ import theme from '@/styles/theme';
 
 import Layout from '@/components/Layout';
 import SnackBar from '@/components/SnackBar';
+import NetworkError from '@/components/NetworkError';
 
 import '../mocks';
 
@@ -32,6 +33,7 @@ const App = ({ Component, pageProps }: AppProps) => {
             <Layout>
               <Component {...pageProps} />
             </Layout>
+            <NetworkError />
           </Hydrate>
           <SnackBar />
         </QueryClientProvider>
