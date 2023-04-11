@@ -1,40 +1,68 @@
-import { Injectable } from '@nestjs/common';
-import { CreateArticleDto } from './dto/create-article.dto';
-// import { UpdateArticleDto } from './dto/update-article.dto';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { checkArticleValidate } from './utils/checkValidate';
+import { Article } from './entities/article.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { PAGE_PER_COUNT } from 'src/constant';
 
 @Injectable()
 export class ArticleService {
+  constructor(
+    @InjectRepository(Article)
+    private articleRepository: Repository<Article>,
+  ) {}
+
   async createArticle(plans: string[]) {
-    const userNickname = 'SAGE';
-    const title = `제목 : ${userNickname}의 계획`;
-    console.log(title);
-    await this.saveArticle(title, plans);
-    return '';
+    if (checkArticleValidate(plans)) {
+      // 현재 로그인 중  user의 네이밍을 가지고 와야 함
+      const userNickname = 'SAGE';
+      await this.saveArticle(userNickname, plans);
+      return;
+    }
+    throw new HttpException('입력하신 계획을 다시 확인해주세요', HttpStatus.BAD_REQUEST);
   }
 
-  private saveArticle(title: string, plans: string[]) {
-    console.log('게시글 생성 후 저장 : ', title, plans);
+  private async saveArticle(nickName: string, plans: string[]) {
+    const article = new Article();
+    article.userId = nickName; // userId 임의로 지정
+    article.plans = JSON.stringify(plans);
+    article.comments = ''; //  최초 생성이므로 빈 배열 저장
+    article.gauge = 0; //  최초 생성이므로 0
+    await this.articleRepository.save(article);
   }
+
+  private findArticleState = async (pageNumber: number) => {
+    const totalCount = await this.articleRepository.count();
+    const hasNext = totalCount > (pageNumber + 1) * PAGE_PER_COUNT;
+    return { totalCount, hasNext };
+  };
+
+  private modifyArticleForm = (articleList: Article[]) => {
+    return articleList.map(item => {
+      return {
+        id: item.id,
+        nickName: item.userId,
+        plan: JSON.parse(item.plans)[0],
+      };
+    });
+  };
 
   async findAll(pageNumber: number) {
-    console.log(pageNumber);
-    //return pageNumber
-    // {
-    //   articles : [
-    //     {
-    //       id: "",
-    //       nickname:""
-    //       plan: '',
-    //     }
-    //   ],
-    //   pageNumber: 1,
-    //   hasNext: false
-    //   totalCount: 11
-    // }
-    return `This action returns all article`;
+    const articleList = await this.articleRepository.find({
+      take: PAGE_PER_COUNT,
+      skip: pageNumber * PAGE_PER_COUNT,
+    });
+    const { totalCount, hasNext } = await this.findArticleState(pageNumber);
+
+    return {
+      articles: this.modifyArticleForm(articleList),
+      pageNumber: pageNumber,
+      hasNext,
+      totalCount,
+    };
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} article`;
+  async findOne(id: number) {
+    return await this.articleRepository.findOneBy({ id });
   }
 }

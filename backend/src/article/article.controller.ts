@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Query, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Query, Param, Res, HttpStatus } from '@nestjs/common';
 import { ArticleService } from './article.service';
 import { CreateArticleDto } from './dto/create-article.dto';
 
@@ -7,20 +7,48 @@ export class ArticleController {
   constructor(private readonly articleService: ArticleService) {}
 
   @Post()
-  async create(@Body() createArticleDto: CreateArticleDto): Promise<void> {
+  async create(@Body() createArticleDto: CreateArticleDto, @Res() res): Promise<void> {
     const { plans } = createArticleDto;
     await this.articleService.createArticle(plans);
+    res.status(HttpStatus.CREATED).send();
   }
 
   @Get()
-  async getPages(@Query() query) {
-    const { pageNumber } = query;
-    const articleList = await this.articleService.findAll(Number(pageNumber));
+  async getPages(@Query('pageNumber') pageNumber, @Res() res) {
+    if (!Number.isNaN(pageNumber)) {
+      res
+        .status(HttpStatus.BAD_REQUEST)
+        .send({ message: '입력하신 pageNumber을 다시 확인해주세요' });
+      return;
+    }
+    const result = await this.articleService.findAll(Number(pageNumber));
+    if (result.articles.length === 0) {
+      res
+        .status(HttpStatus.BAD_REQUEST)
+        .send({ message: '입력하신 pageNumber을 다시 확인해주세요' });
+      return;
+    }
+    res.status(HttpStatus.OK).send(result);
   }
 
   @Get(':articleId')
-  async getArticle(@Param('articleId') articleId: string) {
+  async getArticle(@Param('articleId') articleId: string, @Res() res) {
+    if (!Number.isNaN(articleId)) {
+      res
+        .status(HttpStatus.BAD_REQUEST)
+        .send({ message: '입력하신 articleId를 다시 확인해주세요' });
+      return;
+    }
     const article = await this.articleService.findOne(Number(articleId));
-    console.log(article);
+    if (!article) {
+      res
+        .status(HttpStatus.BAD_REQUEST)
+        .send({ message: '입력하신 articleId를 다시 확인해주세요' });
+    }
+    if (article) {
+      const plans = JSON.parse(article.plans);
+      const nickName = 'SAGE'; // 이곳에서 UserId를 통해서 닉네임 값 받아와야함
+      res.status(HttpStatus.OK).send({ id: article.id, plans, nickName });
+    }
   }
 }

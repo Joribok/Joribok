@@ -9,8 +9,11 @@ export class Article {
   userId: string;
 
   @Column()
-  nickname: string;
+  plans: string;
 
   @Column()
-  plan: string;
+  comments: string;
+
+  @Column()
+  gauge: number;
 }
