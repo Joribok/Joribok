@@ -17,10 +17,9 @@ export class ArticleService {
       // 현재 로그인 중  user의 네이밍을 가지고 와야 함
       const userNickname = 'SAGE';
       await this.saveArticle(userNickname, plans);
+      return;
     }
-    if (!checkArticleValidate(plans)) {
-      throw new HttpException('입력하신 계획을 다시 확인해주세요', HttpStatus.BAD_REQUEST);
-    }
+    throw new HttpException('입력하신 계획을 다시 확인해주세요', HttpStatus.BAD_REQUEST);
   }
 
   private async saveArticle(nickName: string, plans: string[]) {
