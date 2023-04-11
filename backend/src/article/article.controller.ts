@@ -15,6 +15,12 @@ export class ArticleController {
 
   @Get()
   async getPages(@Query('pageNumber') pageNumber, @Res() res) {
+    if (!Number.isNaN(pageNumber)) {
+      res
+        .status(HttpStatus.BAD_REQUEST)
+        .send({ message: '입력하신 pageNumber을 다시 확인해주세요' });
+      return;
+    }
     const result = await this.articleService.findAll(Number(pageNumber));
     if (result.articles.length === 0) {
       res
@@ -27,6 +33,12 @@ export class ArticleController {
 
   @Get(':articleId')
   async getArticle(@Param('articleId') articleId: string, @Res() res) {
+    if (!Number.isNaN(articleId)) {
+      res
+        .status(HttpStatus.BAD_REQUEST)
+        .send({ message: '입력하신 articleId를 다시 확인해주세요' });
+      return;
+    }
     const article = await this.articleService.findOne(Number(articleId));
     if (!article) {
       res
